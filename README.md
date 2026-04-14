@@ -1,7 +1,7 @@
 # Task Manager API + Frontend
 
 A full-stack internship assignment project with robust FastAPI backend, PostgreSQL, JWT auth, RBAC, Redis-enhanced bonuses, and a React frontend.
-
+(The Deployment Links are given below)
 ## Features
 
 - JWT authentication with register, login, refresh, and me endpoints

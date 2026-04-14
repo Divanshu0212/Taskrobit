@@ -61,6 +61,17 @@ docker compose up --build
 - Swagger: http://localhost:8000/docs
 - ReDoc: http://localhost:8000/redoc
 
+## Live Deployment
+
+- Frontend (Vercel): https://taskrobit.vercel.app/
+- Backend API (Render): https://taskrobit.onrender.com/
+
+Important note about Render backend:
+
+- The Render backend may take some time to wake up after inactivity (cold start).
+- First API request can be slow or fail once; retry after 20-60 seconds.
+- After wake-up, API responses return to normal speed.
+
 ## Admin Portal Access
 
 Admin UI route:

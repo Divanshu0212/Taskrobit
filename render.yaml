@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: task-orbit-api
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: 30
+      - key: REDIS_URL
+        sync: false
+      - key: RATE_LIMIT_LOGIN_ATTEMPTS
+        value: 5
+      - key: RATE_LIMIT_WINDOW_SECONDS
+        value: 60
+      - key: CACHE_TTL_SECONDS
+        value: 300
+      - key: CORS_ORIGINS
+        sync: false
+
+  - type: static
+    name: task-orbit-frontend
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_BASE_URL
+        sync: false
